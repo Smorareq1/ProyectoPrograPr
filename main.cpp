@@ -16,7 +16,7 @@ void leerArchivo(string &rutaArchivo) {
             if (archivo) {
                 cout << "Contenido de " << entrada.path().filename() << ":\n";
                 string linea;
-                unordered_set<string> canciones; // Usaremos un conjunto para verificar canciones repetidas
+                unordered_set<string> canciones;
 
                 while (getline(archivo, linea)) {
 
