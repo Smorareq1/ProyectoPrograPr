@@ -18,7 +18,7 @@ public:
     string nombreCancion;
     string nombreArtista;
     string duracion;
-
+    string CD;
     Cancion(){}
 };
 
