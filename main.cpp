@@ -2,13 +2,17 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
-#include "CD.h"
 #include <unordered_set>
+#include <list>
+
+#include "CD.h"
 
 using namespace std;
 
 
 void leerArchivo(string &rutaArchivo) {
+
+    list<CD> listaDeCD;
 
     for (auto& entrada : std::filesystem::directory_iterator(rutaArchivo)) {
         if (entrada.is_regular_file() && entrada.path().extension() == ".txt") {
@@ -20,7 +24,7 @@ void leerArchivo(string &rutaArchivo) {
 
                 while (getline(archivo, linea)) {
 
-                    if (linea.empty()) { //////////////////////////////////////////////////////////////////////////////
+                    if (linea.empty()) { //PREGUNTAR termina programa
                         cout << "Linea vacia encontrada, el formato de texto no es valido (CD corrupto)" << endl;
                         return;
                     }

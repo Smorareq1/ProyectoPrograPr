@@ -14,11 +14,14 @@ using namespace std;
 
 class CD {
 public:
-    string nombreCancion;
+    string nombreCD;
     int numeroCanciones;
     list<Cancion> nombresCanciones;
 
-    CD(){}
+    CD(){
+
+    }
+
 
 };
 
