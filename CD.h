@@ -6,19 +6,19 @@
 #define PROYECTOPROGRAPR_CD_H
 
 #include <string>
-#include<iostream>
+#include <iostream>
 #include <list>
 #include "Cancion.h"
 
+using namespace std;
+
 class CD {
 public:
-    string nombreDeCD;
-    int cantCancion;
-    list<Cancion> Canciones;
+    string nombreCancion;
+    int numeroCanciones;
+    list<Cancion> nombresCanciones;
 
-    CD(){
-
-    } //Constructor vacio
+    CD(){}
 
 };
 

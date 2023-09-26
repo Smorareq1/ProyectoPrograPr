@@ -4,11 +4,12 @@
 
 #ifndef PROYECTOPROGRAPR_CANCION_H
 #define PROYECTOPROGRAPR_CANCION_H
+
+
 #include <string>
 #include <list>
 #include <iostream>
 
-#include "CD.h"
 
 using namespace std;
 
@@ -18,10 +19,7 @@ public:
     string nombreArtista;
     string duracion;
 
-    Cancion(){
-
-    }//Vacio
-
+    Cancion(){}
 };
 
 

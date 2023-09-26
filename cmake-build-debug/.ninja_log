@@ -1,0 +1,21 @@
+# ninja log v5
+12	299	7173952638741231	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+1	312	7173952638896371	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+12	366	7173953890498976	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+2	379	7173953890634081	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+7	210	7173954026183260	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+11	213	7173954026183260	CMakeFiles/ProyectoPrograPr.dir/Cancion.cpp.obj	dd5a8af020967bf9
+2	227	7173954026340928	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+227	314	7173954027207723	ProyectoPrograPr.exe	47b277f82d47b496
+11	209	7173954513006182	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+2	222	7173954513151658	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+6	201	7173955091391532	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+1	221	7173955091591662	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+6	208	7173955546688575	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+11	210	7173955546700270	CMakeFiles/ProyectoPrograPr.dir/Cancion.cpp.obj	dd5a8af020967bf9
+1	230	7173955546890895	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+230	308	7173955547681292	ProyectoPrograPr.exe	47b277f82d47b496
+11	206	7173956180864537	CMakeFiles/ProyectoPrograPr.dir/Cancion.cpp.obj	dd5a8af020967bf9
+7	208	7173956180864537	CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj	94f8b2a677a539f8
+2	228	7173956181070668	CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj	d3808f87c1bd6db
+228	308	7173956181869695	ProyectoPrograPr.exe	47b277f82d47b496
