@@ -8,12 +8,17 @@
 
 #include<iostream>
 #include <list>
+#include "Cancion.h"
+
 using namespace std;
 
 class CD {
 public:
+
+
     string nombreDeCD;
     int cantCancion;
+    list<Cancion> Canciones;
 
     CD(){
 

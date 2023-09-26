@@ -61,6 +61,12 @@ build CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj: CXX_COMPILER__ProyectoPrograPr
   OBJECT_DIR = CMakeFiles\ProyectoPrograPr.dir
   OBJECT_FILE_DIR = CMakeFiles\ProyectoPrograPr.dir
 
+build CMakeFiles/ProyectoPrograPr.dir/Cancion.cpp.obj: CXX_COMPILER__ProyectoPrograPr_unscanned_Debug C$:/Users/smora/Documents/C++$ Clion/ProyectoPrograPr/Cancion.cpp || cmake_object_order_depends_target_ProyectoPrograPr
+  DEP_FILE = CMakeFiles\ProyectoPrograPr.dir\Cancion.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProyectoPrograPr.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProyectoPrograPr.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ProyectoPrograPr
@@ -69,7 +75,7 @@ build CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj: CXX_COMPILER__ProyectoPrograPr
 #############################################
 # Link the executable ProyectoPrograPr.exe
 
-build ProyectoPrograPr.exe: CXX_EXECUTABLE_LINKER__ProyectoPrograPr_Debug CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj
+build ProyectoPrograPr.exe: CXX_EXECUTABLE_LINKER__ProyectoPrograPr_Debug CMakeFiles/ProyectoPrograPr.dir/main.cpp.obj CMakeFiles/ProyectoPrograPr.dir/CD.cpp.obj CMakeFiles/ProyectoPrograPr.dir/Cancion.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ProyectoPrograPr.dir
