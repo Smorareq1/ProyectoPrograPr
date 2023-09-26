@@ -7,10 +7,17 @@
 
 
 #include<iostream>
+#include <list>
 using namespace std;
 
 class CD {
-    string nombres;
+public:
+    string nombreDeCD;
+    int cantCancion;
+
+    CD(){
+
+    } //Constructor vacio
 
 };
 
