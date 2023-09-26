@@ -4,7 +4,7 @@
 
 #ifndef PROYECTOPROGRAPR_CANCION_H
 #define PROYECTOPROGRAPR_CANCION_H
-
+#include <string>
 #include <list>
 #include <iostream>
 

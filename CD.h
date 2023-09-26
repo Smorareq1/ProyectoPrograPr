@@ -5,12 +5,10 @@
 #ifndef PROYECTOPROGRAPR_CD_H
 #define PROYECTOPROGRAPR_CD_H
 
-
+#include <string>
 #include<iostream>
 #include <list>
 #include "Cancion.h"
-
-using namespace std;
 
 class CD {
 public:
