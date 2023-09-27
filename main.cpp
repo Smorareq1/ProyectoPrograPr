@@ -4,10 +4,12 @@
 #include <string>
 #include <unordered_set>
 #include <list>
-#include <cstdlib>
+
 #include "CD.h"
 
 using namespace std;
+
+
 void leerCancion(string linea) {
 
 }
@@ -138,7 +140,7 @@ void menuInicio() {
 }
 
 int main() {
-    menuInicio();
+    menuInicio(); //Ya
 
     return 0;
 }
