@@ -115,8 +115,8 @@ void menuInicio() {
     cout << "Opciones: " << endl;
     cout << "1) Importar Carpeta" << endl;
     cout << "2) Reproductor de musica" << endl;
-    cout << "3) " << endl;
-    cout << "4) " << endl;
+    cout << "3) Borrar CDs" << endl;
+    cout << "4) Salir" << endl;
 
     cout << "Ingrese la opcion que desea consultar: ";
     cin >> opcion;
