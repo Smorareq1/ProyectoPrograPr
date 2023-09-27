@@ -4,12 +4,14 @@
 #include <string>
 #include <unordered_set>
 #include <list>
-
+#include <cstdlib>
 #include "CD.h"
 
 using namespace std;
 
-
+void limpiarConsola() {
+    system("cls");
+}
 void leerCancion(string linea) {
 
 }
@@ -102,7 +104,7 @@ void ruta() {
     //Pedir directorio princial
     string rutaArchivo;
     cout << "Ingrese la ruta de la carpeta con los discos" << endl;
-    fflush(stdin);
+    cin.ignore();
     getline(cin, rutaArchivo);
 
     //Funciones
@@ -125,6 +127,7 @@ void menuInicio() {
 
     switch (opcion) {
     case 1:
+        limpiarConsola();
         ruta();
         break;
     case 2:
