@@ -10,9 +10,6 @@
 
 using namespace std;
 
-void limpiarConsola() {
-    system("cls");
-}
 
 void leerCancion(string linea) {
 
