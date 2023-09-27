@@ -122,7 +122,7 @@ void menuInicio() {
     cout << "3) " << endl;
     cout << "4) " << endl;
 
-    cout << "Ingrese la opcion que desea consultar: " << endl;
+    cout << "Ingrese la opcion que desea consultar: ";
     cin >> opcion;
 
     switch (opcion) {
