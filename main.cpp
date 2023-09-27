@@ -123,29 +123,21 @@ void menuInicio(){
     cout<<"3) "<<endl;
     cout<<"4) "<<endl;
 
+
     cout<<"Ingrese la opcion que desea consultar: ";
     cin>>opcion;
 
     switch (opcion) {
         case 1 :
-            limpiarConsola();
             ruta();
             break;
         case 2 :
-            limpiarConsola();
-            //
             break;
         case 3 :
-            limpiarConsola();
-            //
             break;
         case 4 :
-            limpiarConsola();
-            //
             break;
         default:
-            limpiarConsola();
-            menuInicio();
             break;
     }
 
