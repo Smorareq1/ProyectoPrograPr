@@ -4,7 +4,6 @@
 #include <string>
 #include <unordered_set>
 #include <list>
-#include <cstdlib>
 
 #include "CD.h"
 
@@ -14,7 +13,7 @@ using namespace std;
 void leerCancion(string linea) {
 
 }
-void leerArchivo(string &rutaArchivo) {
+void leerArchivo(string& rutaArchivo) {
 
     list<CD> listaDeCD;
 
@@ -28,6 +27,7 @@ void leerArchivo(string &rutaArchivo) {
                 int id = nombre.find(".txt");
                 //Elimina el .txt del archivo
                 nombre.erase(id, 4);
+                cout << "Contenido de " << entrada.path().filename() << ":\n";
                 string linea;
                 unordered_set<string> canciones;
                 list<Cancion> listaDeCanciones;
@@ -98,7 +98,7 @@ void leerArchivo(string &rutaArchivo) {
     }
 }
 void ruta() {
-    fflush(stdin); 
+
     //Pedir directorio princial
     string rutaArchivo;
     cout << "Ingrese la ruta de la carpeta con los discos" << endl;
@@ -110,45 +110,37 @@ void ruta() {
 
 }
 
-void menuInicio(){
+void menuInicio() {
 
     int opcion = 0;
 
-    cout<<"Opciones: "<<endl;
-    cout<<"1) Importar Carpeta"<<endl;
-    cout<<"2) Reproductor de musica"<<endl;
-    cout<<"3) Reiniciar CDs "<<endl;
-    cout<<"4) Salir "<<endl;
+    cout << "Opciones: " << endl;
+    cout << "1) Importar Carpeta" << endl;
+    cout << "2) Reproductor de musica" << endl;
+    cout << "3) " << endl;
+    cout << "4) " << endl;
 
-    cout<<"Ingrese la opcion que desea consultar: "<<endl;
-    cin>>opcion;
+    cout << "Ingrese la opcion que desea consultar: " << endl;
+    cin >> opcion;
 
     switch (opcion) {
-        case 1 :
-            limpiarConsola();
-            limpiarConsola();
-        case 2 :
-            limpiarConsola();
-        case 3 :
-            ruta();
-        case 4 :
-            //
-        default:
-            break;
-            break;
-        case 4 :
-            limpiarConsola();
-            //
-            break;
-        default:
-            limpiarConsola();
-            menuInicio();
-            break;
+    case 1:
+        ruta();
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    default:
+        break;
     }
 
 }
 
 int main() {
     menuInicio();
+
     return 0;
 }
