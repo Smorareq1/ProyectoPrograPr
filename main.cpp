@@ -4,11 +4,15 @@
 #include <string>
 #include <unordered_set>
 #include <list>
+#include <cstdlib>
 
 #include "CD.h"
 
 using namespace std;
 
+void limpiarConsola() {
+    system("cls");
+}
 
 void leerCancion(string linea) {
 
@@ -70,14 +74,8 @@ void leerArchivo(string &rutaArchivo) {
                 auto cantidadCancionesUnicas = canciones.size();
                 cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
 
-
                 //Crea el objeto
-                CD* cd = new CD();
-                //Al objeto creado le da el nombre y el número de canciones
-                cd->nombreCD = nombre;
-                cd->numeroCanciones = cantidadCancionesUnicas;
-                cd->nombresCanciones = listaDeCanciones;
-
+                CD* cd = new CD(nombre, cantidadCancionesUnicas, listaDeCanciones);
 
                 //Lo añade a la lista de CDs.
                 listaDeCD.push_back(*cd);
@@ -115,10 +113,46 @@ void ruta() {
     leerArchivo(rutaArchivo);
 
 }
-int main() {
-    //Pedir datos
-    ruta();
 
+void menuInicio(){
+    int opcion = 0;
+
+    cout<<"Opciones: "<<endl;
+    cout<<"1) Importar Carpeta"<<endl;
+    cout<<"2) Reproductor de musica"<<endl;
+    cout<<"3) "<<endl;
+    cout<<"4) "<<endl;
+
+    cout<<"Ingrese la opcion que desea consultar: ";
+    cin>>opcion;
+
+    switch (opcion) {
+        case 1 :
+            limpiarConsola();
+            ruta();
+            break;
+        case 2 :
+            limpiarConsola();
+            //
+            break;
+        case 3 :
+            limpiarConsola();
+            //
+            break;
+        case 4 :
+            limpiarConsola();
+            //
+            break;
+        default:
+            limpiarConsola();
+            menuInicio();
+            break;
+    }
+
+}
+
+int main() {
+    menuInicio();
 
     return 0;
 }
