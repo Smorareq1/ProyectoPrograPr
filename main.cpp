@@ -111,14 +111,14 @@ void ruta() {
 }
 
 void menuInicio(){
-    char opcion = 'Z';
+
+    int opcion = 0;
 
     cout<<"Opciones: "<<endl;
     cout<<"1) Importar Carpeta"<<endl;
     cout<<"2) Reproductor de musica"<<endl;
     cout<<"3) Reiniciar CDs "<<endl;
     cout<<"4) Salir "<<endl;
-
 
     cout<<"Ingrese la opcion que desea consultar: "<<endl;
     cin>>opcion;
