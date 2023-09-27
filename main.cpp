@@ -119,21 +119,30 @@ void menuInicio(){
     cout<<"3) Reiniciar CDs "<<endl;
     cout<<"4) Salir "<<endl;
 
+
     cout<<"Ingrese la opcion que desea consultar: ";
     cin>>opcion;
 
     switch (opcion) {
-        case 'A':
+        case 1 :
+            limpiarConsola();
+            limpiarConsola();
+        case 2 :
+            limpiarConsola();
+        case 3 :
             ruta();
+        case 4 :
+            //
+        default:
             break;
-        case 'B':
+            break;
+        case 4 :
+            limpiarConsola();
             //
             break;
-        case 'C':
-            //
-            break;
-        case 'D':
-            //
+        default:
+            limpiarConsola();
+            menuInicio();
             break;
     }
 
