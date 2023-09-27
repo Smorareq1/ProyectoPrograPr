@@ -10,9 +10,6 @@
 
 using namespace std;
 
-void limpiarConsola() {
-    system("cls");
-}
 
 void leerCancion(string linea) {
 
@@ -101,7 +98,7 @@ void leerArchivo(string &rutaArchivo) {
     }
 }
 void ruta() {
-
+    fflush(stdin); 
     //Pedir directorio princial
     string rutaArchivo;
     cout << "Ingrese la ruta de la carpeta con los discos" << endl;
@@ -114,37 +111,29 @@ void ruta() {
 }
 
 void menuInicio(){
-    int opcion = 0;
+    char opcion = 'Z';
 
     cout<<"Opciones: "<<endl;
     cout<<"1) Importar Carpeta"<<endl;
     cout<<"2) Reproductor de musica"<<endl;
-    cout<<"3) "<<endl;
-    cout<<"4) "<<endl;
+    cout<<"3) Reiniciar CDs "<<endl;
+    cout<<"4) Salir "<<endl;
 
     cout<<"Ingrese la opcion que desea consultar: ";
     cin>>opcion;
 
     switch (opcion) {
-        case 1 :
-            limpiarConsola();
+        case 'A':
             ruta();
             break;
-        case 2 :
-            limpiarConsola();
+        case 'B':
             //
             break;
-        case 3 :
-            limpiarConsola();
+        case 'C':
             //
             break;
-        case 4 :
-            limpiarConsola();
+        case 'D':
             //
-            break;
-        default:
-            limpiarConsola();
-            menuInicio();
             break;
     }
 
@@ -152,6 +141,5 @@ void menuInicio(){
 
 int main() {
     menuInicio();
-
     return 0;
 }
