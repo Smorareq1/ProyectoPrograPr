@@ -111,9 +111,7 @@ void ruta() {
 }
 
 void menuInicio() {
-
     int opcion = 0;
-
     cout << "Opciones: " << endl;
     cout << "1) Importar Carpeta" << endl;
     cout << "2) Reproductor de musica" << endl;
@@ -138,7 +136,6 @@ void menuInicio() {
     }
 
 }
-
 int main() {
     menuInicio(); //Ya
 
