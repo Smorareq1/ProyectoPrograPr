@@ -115,6 +115,7 @@ void ruta() {
 }
 
 void menuInicio(){
+
     int opcion = 0;
 
     cout<<"Opciones: "<<endl;
@@ -122,7 +123,6 @@ void menuInicio(){
     cout<<"2) Reproductor de musica"<<endl;
     cout<<"3) "<<endl;
     cout<<"4) "<<endl;
-
 
     cout<<"Ingrese la opcion que desea consultar: "<<endl;
     cin>>opcion;
