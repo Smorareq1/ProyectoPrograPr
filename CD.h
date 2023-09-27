@@ -15,13 +15,19 @@ using namespace std;
 class CD {
 public:
     string nombreCD;
-    int numeroCanciones;
+    size_t numeroCanciones;
     list<Cancion> nombresCanciones;
 
     CD(){
 
     }
 
+    CD(string &nombreDelCD , size_t numeroDeCanciones, list<Cancion> nombresDeLasCanciones){
+        this ->nombreCD = nombreDelCD;
+        this ->numeroCanciones = numeroDeCanciones;
+        this ->nombresCanciones = nombresDeLasCanciones;
+
+    }
 
 };
 
