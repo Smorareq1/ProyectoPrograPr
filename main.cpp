@@ -27,7 +27,6 @@ void leerArchivo(string &rutaArchivo) {
                 int id = nombre.find(".txt");
                 //Elimina el .txt del archivo
                 nombre.erase(id, 4);
-                cout << "Contenido de " << entrada.path().filename() << ":\n";
                 string linea;
                 unordered_set<string> canciones;
                 list<Cancion> listaDeCanciones;
