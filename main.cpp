@@ -8,6 +8,8 @@
 #include "CD.h"
 
 using namespace std;
+
+
 void leerCancion(string linea) {
 
 }
@@ -68,12 +70,15 @@ void leerArchivo(string &rutaArchivo) {
                 auto cantidadCancionesUnicas = canciones.size();
                 cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
 
+
                 //Crea el objeto
                 CD* cd = new CD();
                 //Al objeto creado le da el nombre y el número de canciones
                 cd->nombreCD = nombre;
                 cd->numeroCanciones = cantidadCancionesUnicas;
                 cd->nombresCanciones = listaDeCanciones;
+
+
                 //Lo añade a la lista de CDs.
                 listaDeCD.push_back(*cd);
 
