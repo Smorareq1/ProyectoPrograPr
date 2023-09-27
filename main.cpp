@@ -8,10 +8,6 @@
 #include "CD.h"
 
 using namespace std;
-
-void limpiarConsola() {
-    system("cls");
-}
 void leerCancion(string linea) {
 
 }
@@ -127,7 +123,6 @@ void menuInicio() {
 
     switch (opcion) {
     case 1:
-        limpiarConsola();
         ruta();
         break;
     case 2:
