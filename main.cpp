@@ -9,6 +9,8 @@
 
 using namespace std;
 list<CD>* listaDeCD = new list<CD>;
+
+//Declrarar funciones futuras
 void menuInicio();
 
 void leerCancion(string linea) {
@@ -19,6 +21,7 @@ void limpiarArchivos() {
     //Agregar el clear de las colas
 }
 void salirDelPrograma(){
+
         exit(0);
 }
 
