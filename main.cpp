@@ -16,6 +16,7 @@ void leerCancion(string linea) {
 }
 void limpiarArchivos() {
     listaDeCD->clear();
+    //Agregar el clear de las colas
 }
 void salirDelPrograma(){
         exit(0);
@@ -57,15 +58,20 @@ void leerArchivo(string& rutaArchivo) {
                             auto p1 = linea.find("||");
                             auto p2 = linea.find("||", p1 + 2);
                             if (p1 != string::npos && p2 != string::npos) {
-                                cancion.nombreCancion = linea.substr(0, p1);
-                                cancion.nombreArtista = linea.substr(p1 + 2, p2 - p1 - 2);
-                                cancion.duracion = linea.substr(p2 + 2);
-                                cancion.CD = nombre;
-                                listaDeCanciones.push_back(cancion);
-                                canciones.insert(linea);
-                            }
-                            else {
-                                cout << "Formato de linea incorrecto en: " << nombre << endl;
+                                //Verifica si existe un tercer par
+                                auto p3 = linea.find("||", p2 + 2);
+                                if (p3 != string::npos) {
+                                    //Preguntar si el formato de duración de canción también debe ser comprobado
+                                    cout << "Formato de linea incorrecto en: " << nombre << endl;
+                                }
+                                else {
+                                    cancion.nombreCancion = linea.substr(0, p1);
+                                    cancion.nombreArtista = linea.substr(p1 + 2, p2 - p1 - 2);
+                                    cancion.duracion = linea.substr(p2 + 2);
+                                    cancion.CD = nombre;
+                                    listaDeCanciones.push_back(cancion);
+                                    canciones.insert(linea);
+                                }
                             }
                         }
                     }
@@ -137,16 +143,13 @@ void menuInicio() {
 
         switch (opcion) {
         case 1:
-            if (listaDeCD->size() == 0) {
-                ruta();
-            }
-            else {
-                cout << "Ya ha sido importada una carpeta. Elimínala e inténtalo de nuevo." << endl;
-            }
+            limpiarArchivos();
+            ruta();
             break;
         case 2:
             break;
         case 3:
+            //Pendiente?
             limpiarArchivos();
             cout << "CDs limpiados correctamente." << endl;
             break;
