@@ -14,7 +14,7 @@ void leerCancion(string linea) {
 
 }
 void salirDelPrograma(){
-    exit(0);
+        exit(0);
 }
 
 void leerArchivo(string& rutaArchivo) {
@@ -138,6 +138,7 @@ void menuInicio() {
         salirDelPrograma();
         break;
     default:
+        menuInicio();
         break;
     }
 
