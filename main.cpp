@@ -58,6 +58,7 @@ void leerArchivo(string& rutaArchivo) {
                             if (p1 != string::npos && p2 != string::npos) {
                                 //'Recorta' el nombre de la canción desde 0 (inicio) hasta donde encuentra la primer llave (p1).
                                 cancion->nombreCancion = linea.substr(0, p1);
+
                                 //'Recorta' el nombre del artista desde p1+2 hasta p2-p1-2 y lo almacena.
                                 cancion->nombreArtista = linea.substr(p1 + 2, p2 - p1 - 2);
                                 cancion->duracion = linea.substr(p2 + 2);
