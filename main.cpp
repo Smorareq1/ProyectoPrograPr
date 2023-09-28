@@ -10,7 +10,11 @@
 using namespace std;
 
 
+void menuInicio();
 void leerCancion(string linea) {
+
+}
+void limpiarArchivos() {
 
 }
 void salirDelPrograma(){
@@ -18,52 +22,47 @@ void salirDelPrograma(){
 }
 
 void leerArchivo(string& rutaArchivo) {
-
-    list<CD> listaDeCD;
+    list<CD>* listaDeCD = new list<CD>;
+    unordered_set<string> nombresArchivosProcesados; // Para llevar un registro de los nombres de archivo ya procesados
 
     for (auto& entrada : std::filesystem::directory_iterator(rutaArchivo)) {
         if (entrada.is_regular_file() && entrada.path().extension() == ".txt") {
             ifstream archivo(entrada.path());
             if (archivo) {
-                //Almacena en una variable la ruta del archivo.
                 string nombre = entrada.path().filename().string();
-                //Busca donde se encuentra la extensión .txt del nombre del archivo y la almacena en una variable.
                 int id = nombre.find(".txt");
-                //Elimina el .txt del archivo
                 nombre.erase(id, 4);
-                cout << "Contenido de " << entrada.path().filename() << ":\n";
+
+                // Verificar si ya hemos mostrado el nombre del archivo
+                if (nombresArchivosProcesados.find(nombre) == nombresArchivosProcesados.end()) {
+                    nombresArchivosProcesados.insert(nombre);
+                    /*cout << "Contenido de " << entrada.path().filename() << ":\n";*/
+                }
+
                 string linea;
                 unordered_set<string> canciones;
                 list<Cancion> listaDeCanciones;
                 while (getline(archivo, linea)) {
-                    if (linea.empty()) { //PREGUNTAR termina programa
+                    if (linea.empty()) {
                         cout << "Linea vacia encontrada, el formato de texto no es valido (CD corrupto)" << endl;
                         return;
                     }
-
                     else {
-                        cout << linea << endl;
-
-                        // Verificar si es una canción repetida
+                        /*cout << linea << endl;*/
                         if (canciones.find(linea) != canciones.end()) {
-                            cout << "Cancion repetida: " << linea << endl;
+                            cout << "Cancion repetida en " << nombre << ": " << linea << endl;
                         }
                         else {
-                            Cancion* cancion = new Cancion();
+                            Cancion cancion;
                             canciones.insert(linea);
-                            //Busca donde aparece '||' por primera vez.
-                            auto p1 = linea.find('||');
-                            //Busca donde aparece '||' luego de p1 + 2 caracteres (p1 almacena el primer |).
-                            auto p2 = linea.find('||', p1 + 2);
+                            auto p1 = linea.find("||");
+                            auto p2 = linea.find("||", p1 + 2);
                             if (p1 != string::npos && p2 != string::npos) {
-                                //'Recorta' el nombre de la canción desde 0 (inicio) hasta donde encuentra la primer llave (p1).
-                                cancion->nombreCancion = linea.substr(0, p1);
-
-                                //'Recorta' el nombre del artista desde p1+2 hasta p2-p1-2 y lo almacena.
-                                cancion->nombreArtista = linea.substr(p1 + 2, p2 - p1 - 2);
-                                cancion->duracion = linea.substr(p2 + 2);
-                                cancion->CD = nombre;
-                                listaDeCanciones.push_back(*cancion);
+                                cancion.nombreCancion = linea.substr(0, p1);
+                                cancion.nombreArtista = linea.substr(p1 + 2, p2 - p1 - 2);
+                                cancion.duracion = linea.substr(p2 + 2);
+                                cancion.CD = nombre;
+                                listaDeCanciones.push_back(cancion);
                             }
                         }
                     }
@@ -72,25 +71,24 @@ void leerArchivo(string& rutaArchivo) {
                 if (canciones.empty()) {
                     cout << "El archivo no contiene canciones." << endl;
                 }
+
                 auto cantidadCancionesUnicas = canciones.size();
                 cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
 
-                //Crea el objeto
-                CD* cd = new CD(nombre, cantidadCancionesUnicas, listaDeCanciones);
+                CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
+                listaDeCD->push_back(cd);
 
-                //Lo añade a la lista de CDs.
-                listaDeCD.push_back(*cd);
-
-                archivo.close(); //Pasar al siguiente achivo XDD
+                archivo.close();
                 cout << "\n";
             }
-            else { //PREGUNTAR termina programa
+            else {
                 cout << "No se pudo abrir el archivo: " << entrada.path().filename() << endl;
             }
         }
     }
-    //Para imprimir XDXDXDXDXD
-    for (const CD& disco : listaDeCD) {
+
+    //Para imprimir
+    for (const CD& disco : *listaDeCD) {
         cout << "Nombre del CD: " << disco.nombreCD << endl;
         cout << "Cantidad de canciones: " << disco.numeroCanciones << endl;
         cout << "Canciones: " << endl;
@@ -101,6 +99,7 @@ void leerArchivo(string& rutaArchivo) {
             cout << "Disco que la contiene: " << cancion.CD << endl;
         }
     }
+    menuInicio();
 }
 void ruta() {
 
@@ -144,7 +143,8 @@ void menuInicio() {
 
 }
 int main() {
+    list<CD>* listaDeCD = nullptr;
     menuInicio(); //Ya
-
+    delete listaDeCD;
     return 0;
 }
