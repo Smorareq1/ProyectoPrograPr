@@ -42,6 +42,7 @@ void leerArchivo(string& rutaArchivo) {
                 unordered_set<string> canciones;
                 list<Cancion> listaDeCanciones;
                 while (getline(archivo, linea)) {
+                    //Preguntar si cuando encuentre la linea vacía, tira el disco
                     if (linea.empty()) {
                         cout << "Linea vacia encontrada, el formato de texto no es valido (CD corrupto)" << endl;
                         return;
@@ -53,7 +54,6 @@ void leerArchivo(string& rutaArchivo) {
                         }
                         else {
                             Cancion cancion;
-                            canciones.insert(linea);
                             auto p1 = linea.find("||");
                             auto p2 = linea.find("||", p1 + 2);
                             if (p1 != string::npos && p2 != string::npos) {
@@ -62,6 +62,10 @@ void leerArchivo(string& rutaArchivo) {
                                 cancion.duracion = linea.substr(p2 + 2);
                                 cancion.CD = nombre;
                                 listaDeCanciones.push_back(cancion);
+                                canciones.insert(linea);
+                            }
+                            else {
+                                cout << "Formato de linea incorrecto en: " << nombre << endl;
                             }
                         }
                     }
@@ -72,7 +76,7 @@ void leerArchivo(string& rutaArchivo) {
                 }
                 else {
                     auto cantidadCancionesUnicas = canciones.size();
-                    cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
+                    cout << "\nCantidad de canciones unicas encontradas en " << nombre << ": " << cantidadCancionesUnicas << endl;
 
                     CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
                     listaDeCD->push_back(cd);
@@ -82,6 +86,7 @@ void leerArchivo(string& rutaArchivo) {
                 }
             }
             else {
+                //Preguntar si se debe terminar el programa
                 cout << "No se pudo abrir el archivo: " << entrada.path().filename() << endl;
             }
         }
