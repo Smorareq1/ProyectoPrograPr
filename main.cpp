@@ -8,21 +8,20 @@
 #include "CD.h"
 
 using namespace std;
-
-
+list<CD>* listaDeCD = new list<CD>;
 void menuInicio();
+
 void leerCancion(string linea) {
 
 }
 void limpiarArchivos() {
-
+    listaDeCD->clear();
 }
 void salirDelPrograma(){
         exit(0);
 }
 
 void leerArchivo(string& rutaArchivo) {
-    list<CD>* listaDeCD = new list<CD>;
     unordered_set<string> nombresArchivosProcesados; // Para llevar un registro de los nombres de archivo ya procesados
 
     for (auto& entrada : std::filesystem::directory_iterator(rutaArchivo)) {
@@ -69,17 +68,18 @@ void leerArchivo(string& rutaArchivo) {
                 }
 
                 if (canciones.empty()) {
-                    cout << "El archivo no contiene canciones." << endl;
+                    cout << "El archivo " << nombre << " no contiene canciones." << endl;
                 }
+                else {
+                    auto cantidadCancionesUnicas = canciones.size();
+                    cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
 
-                auto cantidadCancionesUnicas = canciones.size();
-                cout << "\nCantidad de canciones unicas encontradas: " << cantidadCancionesUnicas << endl;
+                    CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
+                    listaDeCD->push_back(cd);
 
-                CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
-                listaDeCD->push_back(cd);
-
-                archivo.close();
-                cout << "\n";
+                    archivo.close();
+                    cout << "\n";
+                }
             }
             else {
                 cout << "No se pudo abrir el archivo: " << entrada.path().filename() << endl;
@@ -88,7 +88,7 @@ void leerArchivo(string& rutaArchivo) {
     }
 
     //Para imprimir
-    for (const CD& disco : *listaDeCD) {
+    /*for (const CD& disco : *listaDeCD) {
         cout << "Nombre del CD: " << disco.nombreCD << endl;
         cout << "Cantidad de canciones: " << disco.numeroCanciones << endl;
         cout << "Canciones: " << endl;
@@ -98,7 +98,7 @@ void leerArchivo(string& rutaArchivo) {
             cout << "Duracion: " << cancion.duracion << endl;
             cout << "Disco que la contiene: " << cancion.CD << endl;
         }
-    }
+    }*/
     menuInicio();
 }
 void ruta() {
@@ -116,30 +116,43 @@ void ruta() {
 
 void menuInicio() {
     int opcion = 0;
-    cout << "Opciones: " << endl;
-    cout << "1) Importar Carpeta" << endl;
-    cout << "2) Reproductor de musica" << endl;
-    cout << "3) Borrar CDs" << endl;
-    cout << "4) Salir" << endl;
+    char entrada[100];
+    do {
+        cout << "Opciones: " << endl;
+        cout << "1) Importar Carpeta" << endl;
+        cout << "2) Reproductor de musica" << endl;
+        cout << "3) Borrar CDs" << endl;
+        cout << "4) Salir" << endl;
 
-    cout << "Ingrese la opcion que desea consultar: ";
-    cin >> opcion;
+        cout << "Ingrese la opcion que desea consultar: ";
+        cin >> entrada;
 
-    switch (opcion) {
-    case 1:
-        ruta();
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 4:
-        salirDelPrograma();
-        break;
-    default:
-        menuInicio();
-        break;
-    }
+        // Verificar si la entrada es un número válido
+        opcion = atoi(entrada);
+
+        switch (opcion) {
+        case 1:
+            if (listaDeCD->size() == 0) {
+                ruta();
+            }
+            else {
+                cout << "Ya ha sido importada una carpeta. Elimínala e inténtalo de nuevo." << endl;
+            }
+            break;
+        case 2:
+            break;
+        case 3:
+            limpiarArchivos();
+            cout << "CDs limpiados correctamente." << endl;
+            break;
+        case 4:
+            salirDelPrograma();
+            break;
+        default:
+            cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
+            break;
+        }
+    } while (opcion != '4');
 
 }
 int main() {
