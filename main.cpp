@@ -13,6 +13,10 @@ using namespace std;
 void leerCancion(string linea) {
 
 }
+void salirDelPrograma(){
+    exit(0);
+}
+
 void leerArchivo(string& rutaArchivo) {
 
     list<CD> listaDeCD;
@@ -130,6 +134,7 @@ void menuInicio() {
     case 3:
         break;
     case 4:
+        salirDelPrograma();
         break;
     default:
         break;
