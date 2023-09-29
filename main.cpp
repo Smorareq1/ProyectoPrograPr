@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <list>
 #include <queue>
+#include <cstring>
 
 #include "CD.h"
 
@@ -14,8 +15,13 @@ list<CD>* listaDeCD = new list<CD>;
 //Declrarar funciones futuras
 void menuInicio();
 
-void leerCancion(string linea) {
-
+void agregarCancion() {
+    int opcion = 0;
+    int i = 0;
+    for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
+        std::cout << i << ". " << it->nombreCD << std::endl;
+        ++i;
+    }
 }
 void limpiarArchivos() {
     listaDeCD->clear();
@@ -129,6 +135,57 @@ void ruta() {
 
 }
 
+void menuReproductorMusica(){
+    int opcion = 0;
+    char entrada[100];
+    do {
+        cout << "Opciones: " << endl;
+        cout << "1) Agregar Cancion" << endl;
+        cout << "2) Ver cola de reproduccion" << endl;
+        cout << "3) Ordenar" << endl;
+        cout << "4) Reproduccion actual" << endl;
+        cout << "5) Reproducir siguiente" << endl;
+        cout << "6) Volver al menu de inicio" << endl;
+
+        cout << "Ingrese la opcion que desea consultar: ";
+        cin >> entrada;
+
+
+        if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
+            cout << "Entrada invalida. Por favor, ingrese un número." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        opcion = atoi(entrada);
+
+
+        switch (opcion) {
+            case 1:
+                agregarCancion();
+                break;
+            case 2:
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+                break;
+            case 6:
+                menuInicio();
+                break;
+            default:
+                cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
+                break;
+        }
+    } while (opcion != 6);
+
+};
+
 void menuInicio() {
     int opcion = 0;
     char entrada[100];
@@ -151,6 +208,7 @@ void menuInicio() {
             ruta();
             break;
         case 2:
+            menuReproductorMusica();
             break;
         case 3:
             //Pendiente?
