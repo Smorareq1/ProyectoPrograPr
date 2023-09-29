@@ -16,7 +16,6 @@ list<CD>* listaDeCD = new list<CD>;
 void menuInicio();
 
 void agregarCancion() {
-    int opcion = 0;
     int i = 0;
     for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
         std::cout << i << ". " << it->nombreCD << std::endl;
@@ -138,7 +137,6 @@ void ruta() {
 void menuReproductorMusica(){
     int opcion = 0;
     char entrada[100];
-    do {
         cout << "Opciones: " << endl;
         cout << "1) Agregar Cancion" << endl;
         cout << "2) Ver cola de reproduccion" << endl;
@@ -155,7 +153,6 @@ void menuReproductorMusica(){
             cout << "Entrada invalida. Por favor, ingrese un número." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
         }
 
         opcion = atoi(entrada);
@@ -176,20 +173,16 @@ void menuReproductorMusica(){
             case 5:
                 break;
             case 6:
-                menuInicio();
                 break;
             default:
                 cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
                 break;
         }
-    } while (opcion != 6);
-
 };
 
 void menuInicio() {
     int opcion = 0;
     char entrada[100];
-    do {
         cout << "Opciones: " << endl;
         cout << "1) Importar Carpeta" << endl;
         cout << "2) Reproductor de musica" << endl;
@@ -198,32 +191,37 @@ void menuInicio() {
 
         cout << "Ingrese la opcion que desea consultar: ";
         cin >> entrada;
-
-        // Verificar si la entrada es un número válido
-        opcion = atoi(entrada);
-
-        switch (opcion) {
-        case 1:
-            limpiarArchivos();
-            ruta();
-            break;
-        case 2:
-            menuReproductorMusica();
-            break;
-        case 3:
-            //Pendiente?
-            limpiarArchivos();
-            cout << "CDs limpiados correctamente." << endl;
-            break;
-        case 4:
-            salirDelPrograma();
-            break;
-        default:
-            cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
-            break;
+        if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
+            cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            menuInicio();
         }
-    } while (opcion != '4');
-
+        else {
+            // Verificar si la entrada es un número válido
+            opcion = atoi(entrada);
+            switch (opcion) {
+            case 1:
+                limpiarArchivos();
+                ruta();
+                break;
+            case 2:
+                menuReproductorMusica();
+                break;
+            case 3:
+                //Pendiente?
+                limpiarArchivos();
+                cout << "CDs limpiados correctamente." << endl;
+                menuInicio();
+                break;
+            case 4:
+                salirDelPrograma();
+                break;
+            default:
+                cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
+                break;
+            }
+        }  
 }
 int main() {
     list<CD>* listaDeCD = nullptr;
