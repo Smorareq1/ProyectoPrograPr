@@ -6,8 +6,9 @@
 
 
  void CD::mostrarCanciones() const{
+     int i = 1;
     for (const Cancion &cancion: nombresCanciones) {
-        cout << cancion.nombreCancion << " || " << cancion.nombreArtista << " || " << cancion.duracion << endl;
+        cout << i << ") " << cancion.nombreCancion << " || " << cancion.nombreArtista << " || " << cancion.duracion << endl;
+        i++;
     }
 }
-

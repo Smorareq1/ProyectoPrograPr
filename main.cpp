@@ -11,7 +11,7 @@
 
 using namespace std;
 list<CD>* listaDeCD = new list<CD>;
-priority_queue<Cancion>* listaReproduccion = new priority_queue<Cancion>;
+queue<Cancion>* listaReproduccion = new queue<Cancion>;
 
 //Declrarar funciones futuras
 void menuInicio();
@@ -24,7 +24,7 @@ void agregarCancion() {
     }
 
     int opcionCD;
-    cout << "Ingrese el numero correspondiente al CD que desea seleccionar: ";
+    cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << endl;
     cin >> opcionCD;
 
     if (opcionCD >= 1 && opcionCD <= listaDeCD->size()) {
@@ -32,7 +32,7 @@ void agregarCancion() {
         advance(it, opcionCD - 1);
 
         const CD& CDElegido = *it;
-        cout << "Ingrese el numero correspondiente a la canción que desea seleccionar: ";
+        cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << endl;
         int opcionCancion;
         CDElegido.mostrarCanciones();
         cin >> opcionCancion;
@@ -52,7 +52,15 @@ void agregarCancion() {
     }
 
 }
-
+void verLista() {
+    //Preguntar si el usuario la quiere ordenar
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    cout << "Canciones en la lista de reproduccion" << endl;
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
 
 
 void limpiarArchivos() {
@@ -194,8 +202,10 @@ void menuReproductorMusica(){
         switch (opcion) {
             case 1:
                 agregarCancion();
+                menuReproductorMusica();
                 break;
             case 2:
+                verLista();
                 break;
             case 3:
 

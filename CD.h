@@ -20,7 +20,6 @@ public:
 
     //Funciones
      void mostrarCanciones() const;
-
     CD(){
 
     }
