@@ -34,7 +34,7 @@ void agregarCancion() {
 
         const CD& CDElegido = *it;
         cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << endl;
-        int opcionCancion;
+        int opcionCancion = 0;
         CDElegido.mostrarCanciones();
         cin >> opcionCancion;
 
@@ -46,7 +46,7 @@ void agregarCancion() {
             listaReproduccion->push(CancionElegida);
         }
         else {
-            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl; //PENDIENTE
         }
     } else {
         cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
