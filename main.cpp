@@ -12,6 +12,7 @@
 using namespace std;
 list<CD>* listaDeCD = new list<CD>;
 queue<Cancion>* listaReproduccion = new queue<Cancion>;
+queue<Cancion>* listaTemporal = new queue<Cancion>;
 
 //Declrarar funciones futuras
 void menuInicio();
@@ -268,7 +269,14 @@ void menuInicio() {
 }
 int main() {
     list<CD>* listaDeCD = nullptr;
-    menuInicio(); //Ya
+    queue<Cancion>* listaReproduccion = nullptr;
+    queue<Cancion>* listaTemporal = nullptr;
+    menuInicio();
+
     delete listaDeCD;
+    delete listaReproduccion;
+    delete listaTemporal;
+
+
     return 0;
 }
