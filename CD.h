@@ -18,6 +18,9 @@ public:
     size_t numeroCanciones;
     list<Cancion> nombresCanciones;
 
+    //Funciones
+     void mostrarCanciones() const;
+
     CD(){
 
     }

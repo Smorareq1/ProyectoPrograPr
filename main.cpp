@@ -16,12 +16,31 @@ list<CD>* listaDeCD = new list<CD>;
 void menuInicio();
 
 void agregarCancion() {
-    int i = 0;
+    int i = 1;
     for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
-        std::cout << i << ". " << it->nombreCD << std::endl;
+        cout << i << ") " << it->nombreCD << endl;
         ++i;
     }
+
+    int opcionUsuario;
+    cout << "Ingrese el numero correspondiente al CD que desea seleccionar: ";
+    cin >> opcionUsuario;
+
+    if (opcionUsuario >= 1 && opcionUsuario <= listaDeCD->size()) {
+        auto it = listaDeCD->begin();
+        advance(it, opcionUsuario - 1);
+
+        const CD& cdSeleccionado = *it;
+        cdSeleccionado.mostrarCanciones();
+
+    } else {
+        cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+    }
+
 }
+
+
+
 void limpiarArchivos() {
     listaDeCD->clear();
     //Agregar el clear de las colas
