@@ -11,6 +11,7 @@
 
 using namespace std;
 list<CD>* listaDeCD = new list<CD>;
+priority_queue<Cancion>* listaReproduccion = new priority_queue<Cancion>;
 
 //Declrarar funciones futuras
 void menuInicio();
@@ -22,17 +23,30 @@ void agregarCancion() {
         ++i;
     }
 
-    int opcionUsuario;
+    int opcionCD;
     cout << "Ingrese el numero correspondiente al CD que desea seleccionar: ";
-    cin >> opcionUsuario;
+    cin >> opcionCD;
 
-    if (opcionUsuario >= 1 && opcionUsuario <= listaDeCD->size()) {
+    if (opcionCD >= 1 && opcionCD <= listaDeCD->size()) {
         auto it = listaDeCD->begin();
-        advance(it, opcionUsuario - 1);
+        advance(it, opcionCD - 1);
 
-        const CD& cdSeleccionado = *it;
-        cdSeleccionado.mostrarCanciones();
+        const CD& CDElegido = *it;
+        cout << "Ingrese el numero correspondiente a la canción que desea seleccionar: ";
+        int opcionCancion;
+        CDElegido.mostrarCanciones();
+        cin >> opcionCancion;
 
+        if (opcionCancion >= 1 && opcionCancion <= CDElegido.numeroCanciones) {
+            auto it2 = (CDElegido.nombresCanciones).begin();
+            advance(it2, opcionCancion - 1);
+
+            const Cancion& CancionElegida = *it2;
+            listaReproduccion->push(CancionElegida);
+        }
+        else {
+            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+        }
     } else {
         cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
     }
