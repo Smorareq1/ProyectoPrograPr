@@ -17,6 +17,7 @@ queue<Cancion>* listaTemporal = new queue<Cancion>;
 
 //Declrarar funciones futuras
 void menuInicio();
+void menuOrdenar();
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void agregarCancion() {
@@ -56,7 +57,7 @@ void agregarCancion() {
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-void ordenarNombreCancionAscendente(bool perma) { //NUEVO //Ascendente //Modificar cola orignal?
+void ordenarNombreCancionAscendente(bool perma) {
     queue<Cancion> listaTemporal = *listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal.empty()) {
@@ -108,7 +109,7 @@ void ordenarNombreCancionDescendente(bool perma) {
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-void ordenarNombreArtistaAscendente(bool perma) { //NUEVO //ASCENENTE
+void ordenarNombreArtistaAscendente(bool perma) {
     queue<Cancion> listaTemporal = *listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal.empty()) {
@@ -162,7 +163,7 @@ int convertirADuracionEnSegundos(const string& duracionCancion) {
     int segundos = stoi(duracionCancion.substr(pos + 1));
     return minutos * 60 + segundos;
 }
-void ordenarPorDuracionAscendente(bool perma) {// NUEVO // ASCENDENTE
+void ordenarPorDuracionAscendente(bool perma) {
     queue<Cancion> listaTemporal = *listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal.empty()) {
@@ -407,17 +408,20 @@ void menuReproductorMusica(){
                 break;
             case 2:
                 verLista();
-                menuReproductorMusica(); //NUEVO
+                menuReproductorMusica();
                 break;
             case 3:
-
+                menuOrdenar();
+                menuReproductorMusica();
                 break;
             case 4:
-
+                //Rep actual
                 break;
             case 5:
+                //Rep siguiente
                 break;
             case 6:
+                menuInicio();
                 break;
             default:
                 cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
@@ -428,14 +432,18 @@ void menuReproductorMusica(){
 void menuOrdenar() {
     int opcion1 = 0;
     bool opcion2 = 0;
+
+
     cout << "¿Como desea ordenar la lista de reproducción?" << endl;
     cout << "1) Nombre del artista" << endl;
     cout << "2) Nombre de la cancion" << endl;
     cout << "3) Duracion de la cancion" << endl;
     cout << "Ingrese la opcion que desea consultar: ";
     cin >> opcion1;
+    cout<<"Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?";
+    cin>> opcion2;
 
-    ordenar(opcion1 + 1, true, false);
+    ordenar(opcion1 + 1, opcion2, true);
 }
 void menuInicio() {
     int opcion = 0;
