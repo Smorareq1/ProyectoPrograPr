@@ -18,6 +18,7 @@ queue<Cancion>* listaTemporal = new queue<Cancion>;
 //Declrarar funciones futuras
 void menuInicio();
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void agregarCancion() {
     int i = 1;
     for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
@@ -54,6 +55,7 @@ void agregarCancion() {
     }
 
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
     //Preguntar si el usuario la quiere ordenar
     queue<Cancion>* listaTemporal = listaReproduccion;
@@ -63,7 +65,7 @@ void verLista() {
         listaTemporal->pop();
     }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarNombreCancionAscendente() { //NUEVO //Ascendente //Modificar cola orignal?
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
@@ -87,7 +89,7 @@ void ordenarNombreCancionAscendente() { //NUEVO //Ascendente //Modificar cola or
         listaTemporal->pop();
     }
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
@@ -109,16 +111,44 @@ void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
         listaTemporal->pop();
     }
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+int convertirADuracionEnSegundos(const string& duracionCancion) {
+    size_t pos = duracionCancion.find(":");
+    int minutos = stoi(duracionCancion.substr(0, pos));
+    int segundos = stoi(duracionCancion.substr(pos + 1));
+    return minutos * 60 + segundos;
+}
+void ordenarPorDuracionAscendente() {// NUEVO // ASCENDENTE
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vectorOrdenar;
+    while (!listaTemporal->empty()) {
+        vectorOrdenar.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
 
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
+        return convertirADuracionEnSegundos(a.duracion) < convertirADuracionEnSegundos(b.duracion);
+    });
+
+    for (const auto& cancion : vectorOrdenar) {
+        listaTemporal->push(cancion);
+    }
+
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void limpiarArchivos() {
     listaDeCD->clear();
     //Agregar el clear de las colas
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void salirDelPrograma(){
-
         exit(0);
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void leerArchivo(string& rutaArchivo) {
     unordered_set<string> nombresArchivosProcesados; // Para llevar un registro de los nombres de archivo ya procesados
 
@@ -209,6 +239,7 @@ void leerArchivo(string& rutaArchivo) {
     }*/
     menuInicio();
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void ruta() {
 
     //Pedir directorio princial
@@ -221,7 +252,7 @@ void ruta() {
     leerArchivo(rutaArchivo);
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void menuReproductorMusica(){
     int opcion = 0;
     char entrada[100];
@@ -256,7 +287,7 @@ void menuReproductorMusica(){
                 menuReproductorMusica(); //NUEVO
                 break;
             case 3:
-                ordenarNombreArtistaAscendente();
+                ordenarPorDuracionAscendente();
                 break;
             case 4:
 
@@ -270,7 +301,7 @@ void menuReproductorMusica(){
                 break;
         }
 };
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void menuInicio() {
     int opcion = 0;
     char entrada[100];
@@ -314,6 +345,7 @@ void menuInicio() {
             }
         }  
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 int main() {
     list<CD>* listaDeCD = nullptr;
     queue<Cancion>* listaReproduccion = nullptr;
