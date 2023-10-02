@@ -74,17 +74,19 @@ void ordenarNombreCancionAscendente(bool perma) { //NUEVO //Ascendente //Modific
     for (const auto& cancion : vectorOrdenar) {
         listaTemporal->push(cancion);
     }
+
     if (perma) {
-        listaReproduccion = listaTemporal;
-        while (!listaReproduccion->empty()) {
-            cout << (listaReproduccion->front()).nombreCancion << " || " << (listaReproduccion->front()).nombreArtista << " || " << (listaReproduccion->front()).duracion << endl;
-            listaReproduccion->pop();
+        queue<Cancion>* listaAuxiliar = listaTemporal;
+        while (!listaAuxiliar->empty()) {
+            cout << (listaAuxiliar->front()).nombreCancion << " || " << (listaAuxiliar->front()).nombreArtista << " || " << (listaAuxiliar->front()).duracion << endl;
+            listaAuxiliar->pop();
         }
         return;
     }
-    while (!listaTemporal->empty()) {
-        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
-        listaTemporal->pop();
+    queue<Cancion>*  listaAuxiliar = listaTemporal;
+    while (!listaAuxiliar->empty()) {
+        cout << (listaAuxiliar->front()).nombreCancion << " || " << (listaAuxiliar->front()).nombreArtista << " || " << (listaAuxiliar->front()).duracion << endl;
+        listaAuxiliar->pop();
     }
 }
 void ordenarNombreCancionDescendente(bool perma) {
@@ -239,10 +241,12 @@ void ordenarPorDuracionDescendente(bool perma) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarOriginal() {
     queue<Cancion>* listaTemporal = listaReproduccion;
+    queue<Cancion> listaAuxiliar = listaTemporal;;
+
     cout << "Canciones en la lista de reproduccion" << endl;
-    while (!listaTemporal->empty()) {
-        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
-        listaTemporal->pop();
+    while (!listaAuxiliar->empty()) {
+        cout << (listaAuxiliar->front()).nombreCancion << " || " << (listaAuxiliar->front()).nombreArtista << " || " << (listaAuxiliar->front()).duracion << endl;
+        listaAuxiliar->pop();
     }
 }
 void ordenar(int orden, bool acdc, bool perm) {
@@ -503,11 +507,13 @@ int main() {
     list<CD>* listaDeCD = nullptr;
     queue<Cancion>* listaReproduccion = nullptr;
     queue<Cancion>* listaTemporal = nullptr;
+    queue<Cancion>* listaAuxiliar = nullptr;
     menuInicio();
 
     delete listaDeCD;
     delete listaReproduccion;
     delete listaTemporal;
+    delete listaAuxiliar;
 
 
     return 0;
