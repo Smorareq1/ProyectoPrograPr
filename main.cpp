@@ -89,6 +89,26 @@ void ordenarNombreCancionAscendente() { //NUEVO //Ascendente //Modificar cola or
         listaTemporal->pop();
     }
 }
+void ordenarNombreCancionDescendente(){
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vectorOrdenar;
+    while (!listaTemporal->empty()) {
+        vectorOrdenar.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
+
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
+        return a.nombreCancion > b.nombreCancion;
+    });
+
+    for (const auto& cancion : vectorOrdenar) {
+        listaTemporal->push(cancion);
+    }
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
     queue<Cancion>* listaTemporal = listaReproduccion;
@@ -106,6 +126,24 @@ void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
         listaTemporal->push(cancion);
     }
 
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
+void ordenarNombreArtistaDescendente(){
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vectorOrdenar;
+    while (!listaTemporal->empty()) {
+        vectorOrdenar.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
+        return a.nombreArtista > b.nombreArtista;
+    });
+    for (const auto& cancion : vectorOrdenar) {
+        listaTemporal->push(cancion);
+    }
     while (!listaTemporal->empty()) {
         cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
         listaTemporal->pop();
@@ -134,6 +172,24 @@ void ordenarPorDuracionAscendente() {// NUEVO // ASCENDENTE
         listaTemporal->push(cancion);
     }
 
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
+void ordenarDuracionDescendente(){
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vectorOrdenar;
+    while (!listaTemporal->empty()) {
+        vectorOrdenar.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
+        return convertirADuracionEnSegundos(a.duracion) > convertirADuracionEnSegundos(b.duracion);
+    });
+    for (const auto& cancion : vectorOrdenar) {
+        listaTemporal->push(cancion);
+    }
     while (!listaTemporal->empty()) {
         cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
         listaTemporal->pop();
@@ -287,7 +343,7 @@ void menuReproductorMusica(){
                 menuReproductorMusica(); //NUEVO
                 break;
             case 3:
-                ordenarPorDuracionAscendente();
+                ordenarNombreCancionDescendente();
                 break;
             case 4:
 
