@@ -426,7 +426,16 @@ void menuReproductorMusica(){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void menuOrdenar() {
+    int opcion1 = 0;
+    bool opcion2 = 0;
+    cout << "¿Como desea ordenar la lista de reproducción?" << endl;
+    cout << "1) Nombre del artista" << endl;
+    cout << "2) Nombre de la cancion" << endl;
+    cout << "3) Duracion de la cancion" << endl;
+    cout << "Ingrese la opcion que desea consultar: ";
+    cin >> opcion1;
 
+    ordenar(opcion1 + 1, true, false);
 }
 void menuInicio() {
     int opcion = 0;
