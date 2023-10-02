@@ -300,7 +300,7 @@ void menuReproductorMusica(){
                 cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
                 break;
         }
-};
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void menuInicio() {
     int opcion = 0;
