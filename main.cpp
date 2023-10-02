@@ -66,19 +66,19 @@ void verLista() {
 
 void ordenarNombreCancionAscendente() { //NUEVO //Ascendente
     queue<Cancion>* listaTemporal = listaReproduccion;
-    vector<Cancion> vec;
+    vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vec.push_back(listaReproduccion->front());
+        vectorOrdenar.push_back(listaReproduccion->front());
         listaReproduccion->pop();
     }
 
     // Ordenar el vector por nombreCancion
-    sort(vec.begin(), vec.end(), [](const Cancion& a, const Cancion& b) {
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
         return a.nombreCancion < b.nombreCancion;
     });
 
     // Copiar elementos ordenados de vuelta a la cola
-    for (const auto& cancion : vec) {
+    for (const auto& cancion : vectorOrdenar) {
         listaTemporal->push(cancion);
     }
 
@@ -90,17 +90,17 @@ void ordenarNombreCancionAscendente() { //NUEVO //Ascendente
 
 void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
     queue<Cancion>* listaTemporal = listaReproduccion;
-    vector<Cancion> vec;
+    vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vec.push_back(listaReproduccion->front());
+        vectorOrdenar.push_back(listaReproduccion->front());
         listaReproduccion->pop();
     }
 
-    sort(vec.begin(), vec.end(), [](const Cancion& a, const Cancion& b) {
+    sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
         return a.nombreArtista < b.nombreArtista;
     });
 
-    for (const auto& cancion : vec) {
+    for (const auto& cancion : vectorOrdenar) {
         listaTemporal->push(cancion);
     }
 
