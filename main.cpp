@@ -70,13 +70,14 @@ void ordenarNombreCancionAscendente() { //NUEVO //Ascendente //Modificar cola or
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
 
-    // Ordenar el vector por nombreCancion
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
-        return a.nombreCancion < b.nombreCancion;
+        string primerosDosCaracteresA = a.nombreCancion.substr(0, 4);
+        string primerosDosCaracteresB = b.nombreCancion.substr(0, 4);
+        return primerosDosCaracteresA < primerosDosCaracteresB;
     });
 
     // Copiar elementos ordenados de vuelta a la cola
@@ -93,12 +94,14 @@ void ordenarNombreCancionDescendente(){
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
 
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
-        return a.nombreCancion > b.nombreCancion;
+        string primerosDosCaracteresA = a.nombreCancion.substr(0, 4);
+        string primerosDosCaracteresB = b.nombreCancion.substr(0, 4);
+        return primerosDosCaracteresA > primerosDosCaracteresB;
     });
 
     for (const auto& cancion : vectorOrdenar) {
@@ -114,12 +117,14 @@ void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
 
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
-        return a.nombreArtista < b.nombreArtista;
+        string primerosDosCaracteresA = a.nombreArtista.substr(0, 4);
+        string primerosDosCaracteresB = b.nombreArtista.substr(0, 4);
+        return primerosDosCaracteresA < primerosDosCaracteresB;
     });
 
     for (const auto& cancion : vectorOrdenar) {
@@ -135,11 +140,13 @@ void ordenarNombreArtistaDescendente(){
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
-        return a.nombreArtista > b.nombreArtista;
+        string primerosDosCaracteresA = a.nombreArtista.substr(0, 4);
+        string primerosDosCaracteresB = b.nombreArtista.substr(0, 4);
+        return primerosDosCaracteresA > primerosDosCaracteresB;
     });
     for (const auto& cancion : vectorOrdenar) {
         listaTemporal->push(cancion);
@@ -160,8 +167,8 @@ void ordenarPorDuracionAscendente() {// NUEVO // ASCENDENTE
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
 
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
@@ -181,8 +188,8 @@ void ordenarDuracionDescendente(){
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
-        vectorOrdenar.push_back(listaReproduccion->front());
-        listaReproduccion->pop();
+        vectorOrdenar.push_back(listaTemporal->front());
+        listaTemporal->pop();
     }
     sort(vectorOrdenar.begin(), vectorOrdenar.end(), [](const Cancion& a, const Cancion& b) {
         return convertirADuracionEnSegundos(a.duracion) > convertirADuracionEnSegundos(b.duracion);
@@ -343,7 +350,7 @@ void menuReproductorMusica(){
                 menuReproductorMusica(); //NUEVO
                 break;
             case 3:
-                ordenarNombreCancionDescendente();
+                ordenarNombreCancionAscendente();
                 break;
             case 4:
 
