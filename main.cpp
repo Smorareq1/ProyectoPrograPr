@@ -57,7 +57,11 @@ void agregarCancion() {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
-    //Preguntar si el usuario la quiere ordenar
+    cout << "¿Como desea visualizar la lista de reproducción?" << endl;
+    cout << "1) Agregado originalmente" << endl;
+    cout << "2) Nombre del artista" << endl;
+    cout << "3) Nombre de la cancion" << endl;
+    cout << "4) Duracion de la cancion" << endl;
     queue<Cancion>* listaTemporal = listaReproduccion;
     cout << "Canciones en la lista de reproduccion" << endl;
     while (!listaTemporal->empty()) {
@@ -200,6 +204,33 @@ void ordenarDuracionDescendente(){
     while (!listaTemporal->empty()) {
         cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
         listaTemporal->pop();
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void ordenar(int orden, bool acdc, bool perm) {
+    
+    switch (orden) {
+        case 1:
+            break;
+        case 2:
+            if (acdc) {
+                ordenarNombreArtistaAscendente();
+            }
+            else {
+                ordenarNombreArtistaDescendente();
+            }
+            break;
+        case 3:
+            if (acdc) {
+                ordenarNombreCancionAscendente();
+            }
+            else {
+                ordenarNombreCancionDescendente();
+            }
+            break;
+        case 4:
+
+            break;
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
