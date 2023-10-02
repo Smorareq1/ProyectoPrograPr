@@ -64,7 +64,7 @@ void verLista() {
     }
 }
 
-void ordenarNombreCancionAscendente() { //NUEVO //Ascendente
+void ordenarNombreCancionAscendente() { //NUEVO //Ascendente //Modificar cola orignal?
     queue<Cancion>* listaTemporal = listaReproduccion;
     vector<Cancion> vectorOrdenar;
     while (!listaTemporal->empty()) {
