@@ -76,7 +76,7 @@ void ordenarNombreCancionAscendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -101,7 +101,7 @@ void ordenarNombreCancionDescendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -126,7 +126,7 @@ void ordenarNombreArtistaAscendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -149,7 +149,7 @@ void ordenarNombreArtistaDescendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -179,7 +179,7 @@ void ordenarPorDuracionAscendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -200,7 +200,7 @@ void ordenarPorDuracionDescendente(bool perma) {
         listaTemporal.push(cancion);
     }
     if (perma) {
-        listaReproduccion = &listaTemporal;
+        *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
         cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
@@ -254,7 +254,7 @@ void ordenar(int orden, bool acdc, bool perm) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
     int opcion1 = 0;
-    cout << "¿Como desea visualizar la lista de reproducción?" << endl;
+    cout << "Como desea visualizar la lista de reproduccion?" << endl;
     cout << "1) Agregado originalmente" << endl;
     cout << "2) Nombre del artista" << endl;
     cout << "3) Nombre de la cancion" << endl;
@@ -438,9 +438,9 @@ void menuOrdenar() {
     cout << "1) Nombre del artista" << endl;
     cout << "2) Nombre de la cancion" << endl;
     cout << "3) Duracion de la cancion" << endl;
-    cout << "Ingrese la opcion que desea consultar: ";
+    cout << "Ingrese la opcion que desea consultar: " << endl;
     cin >> opcion1;
-    cout<<"Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?";
+    cout<<"Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?" << endl;
     cin>> opcion2;
 
     ordenar(opcion1 + 1, opcion2, true);
