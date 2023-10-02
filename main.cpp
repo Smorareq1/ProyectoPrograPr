@@ -6,6 +6,7 @@
 #include <list>
 #include <queue>
 #include <cstring>
+#include <algorithm>
 
 #include "CD.h"
 
@@ -63,6 +64,51 @@ void verLista() {
     }
 }
 
+void ordenarNombreCancionAscendente() { //NUEVO //Ascendente
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vec;
+    while (!listaTemporal->empty()) {
+        vec.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
+
+    // Ordenar el vector por nombreCancion
+    sort(vec.begin(), vec.end(), [](const Cancion& a, const Cancion& b) {
+        return a.nombreCancion < b.nombreCancion;
+    });
+
+    // Copiar elementos ordenados de vuelta a la cola
+    for (const auto& cancion : vec) {
+        listaTemporal->push(cancion);
+    }
+
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
+
+void ordenarNombreArtistaAscendente() { //NUEVO //ASCENENTE
+    queue<Cancion>* listaTemporal = listaReproduccion;
+    vector<Cancion> vec;
+    while (!listaTemporal->empty()) {
+        vec.push_back(listaReproduccion->front());
+        listaReproduccion->pop();
+    }
+
+    sort(vec.begin(), vec.end(), [](const Cancion& a, const Cancion& b) {
+        return a.nombreArtista < b.nombreArtista;
+    });
+
+    for (const auto& cancion : vec) {
+        listaTemporal->push(cancion);
+    }
+
+    while (!listaTemporal->empty()) {
+        cout << (listaTemporal->front()).nombreCancion << " || " << (listaTemporal->front()).nombreArtista << " || " << (listaTemporal->front()).duracion << endl;
+        listaTemporal->pop();
+    }
+}
 
 void limpiarArchivos() {
     listaDeCD->clear();
@@ -207,9 +253,10 @@ void menuReproductorMusica(){
                 break;
             case 2:
                 verLista();
+                menuReproductorMusica(); //NUEVO
                 break;
             case 3:
-
+                ordenarNombreArtistaAscendente();
                 break;
             case 4:
 
