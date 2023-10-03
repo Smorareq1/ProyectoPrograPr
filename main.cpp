@@ -17,7 +17,8 @@ queue<Cancion>* listaTemporal = new queue<Cancion>;
 Cancion* CancionActual = new Cancion ;
 
 //Declaracion de centinela
-bool centinela = true;
+bool centinela = false;
+bool primeravez = true;
 
 //Declrarar funciones futuras
 void menuInicio();
@@ -68,9 +69,7 @@ void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
         const Cancion& CancionElegida = *it2;
         listaReproduccion->push(CancionElegida);
         cout << "Cancion agregada." << endl;
-        if (listaReproduccion->size() == 1) {
-            *CancionActual = listaReproduccion->front();
-        }
+
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -278,8 +277,19 @@ void reproduccionActual(){
      cout << "Reproduccion en Pausa" << endl;
     }
 }
+void reproducirSiguiente(){
+    listaReproduccion->push(*CancionActual);
+    *CancionActual = listaReproduccion->front();
+    listaReproduccion->pop();
+    reproduccionActual();
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void playStop() {
+    if(primeravez) {
+        primeravez = false;
+        *CancionActual = listaReproduccion->front();
+        listaReproduccion->pop();
+    }
     if (centinela) {
         centinela = false;
         cout << "Reproduccion pausada" << endl;
@@ -483,7 +493,8 @@ void menuReproductorMusica(){
                 menuReproductorMusica();
                 break;
             case 5:
-                //Rep siguiente
+                reproducirSiguiente();
+                menuReproductorMusica();
                 break;
             case 6:
                 playStop();
