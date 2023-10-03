@@ -18,9 +18,9 @@ queue<Cancion>* listaTemporal = new queue<Cancion>;
 //Declrarar funciones futuras
 void menuInicio();
 void menuOrdenar();
-
+void menuReproductorMusica();
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-void agregarCancion() {
+void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
     int i = 1;
     for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
         cout << i << ") " << it->nombreCD << endl;
@@ -30,7 +30,18 @@ void agregarCancion() {
     int opcionCD;
     cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << endl;
     cin >> opcionCD;
-
+    while (cin.fail() || opcionCD < 1 || opcionCD > listaDeCD->size()) {
+        cout << "Opcion invalida. Por favor, seleccione un CD valido." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        int j = 1;
+        for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
+            cout << j << ") " << it->nombreCD << endl;
+            ++j;
+        }
+        cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << endl;
+        cin >> opcionCD;
+    }
     if (opcionCD >= 1 && opcionCD <= listaDeCD->size()) {
         auto it = listaDeCD->begin();
         advance(it, opcionCD - 1);
@@ -40,21 +51,20 @@ void agregarCancion() {
         int opcionCancion = 0;
         CDElegido.mostrarCanciones();
         cin >> opcionCancion;
-
-        if (opcionCancion >= 1 && opcionCancion <= CDElegido.numeroCanciones) {
-            auto it2 = (CDElegido.nombresCanciones).begin();
-            advance(it2, opcionCancion - 1);
-
-            const Cancion& CancionElegida = *it2;
-            listaReproduccion->push(CancionElegida);
+        while (cin.fail() || opcionCancion < 1 || opcionCancion > CDElegido.numeroCanciones) {
+            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << endl;
+            cin >> opcionCancion;
         }
-        else {
-            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl; //PENDIENTE
-        }
-    } else {
-        cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+        auto it2 = (CDElegido.nombresCanciones).begin();
+        advance(it2, opcionCancion - 1);
+
+        const Cancion& CancionElegida = *it2;
+        listaReproduccion->push(CancionElegida);
+        cout << "Canción agregada." << endl;
     }
-
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarNombreCancionAscendente(bool perma) {
@@ -254,14 +264,30 @@ void ordenar(int orden, bool acdc, bool perm) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
     int opcion1 = 0;
+    char entrada[100];
     cout << "Como desea visualizar la lista de reproduccion?" << endl;
     cout << "1) Agregado originalmente" << endl;
     cout << "2) Nombre del artista" << endl;
     cout << "3) Nombre de la cancion" << endl;
     cout << "4) Duracion de la cancion" << endl;
     cout << "Ingrese la opcion que desea consultar: ";
-    cin >> opcion1;
-    ordenar(opcion1, true, false);
+    cin >> entrada;
+    if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
+        cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        verLista();
+    }
+    else {
+        opcion1 = atoi(entrada);
+        if (opcion1 > 0 && opcion1 < 5) {
+            ordenar(opcion1, true, false);
+        }
+        else {
+            cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+            verLista();
+        }
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void limpiarArchivos() {
@@ -274,6 +300,12 @@ void salirDelPrograma(){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void leerArchivo(string& rutaArchivo) {
+    //Verifica que exista el directorio
+    if (!filesystem::is_directory(rutaArchivo) || !filesystem::exists(rutaArchivo)) {
+        cout << "Ruta no valida. Por favor, ingrese una ruta de directorio valida." << endl;
+        menuInicio();
+        return;
+    }
     unordered_set<string> nombresArchivosProcesados; // Para llevar un registro de los nombres de archivo ya procesados
 
     for (auto& entrada : std::filesystem::directory_iterator(rutaArchivo)) {
@@ -396,6 +428,8 @@ void menuReproductorMusica(){
             cout << "Entrada invalida. Por favor, ingrese un número." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            menuReproductorMusica();
+            return;
         }
 
         opcion = atoi(entrada);
@@ -425,25 +459,60 @@ void menuReproductorMusica(){
                 break;
             default:
                 cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
+                menuReproductorMusica();
                 break;
         }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void menuOrdenar() {
     int opcion1 = 0;
-    bool opcion2 = 0;
+    bool opcion2 = false;
+    char entradaO[100];
+    char entradaO2[100];
 
-
-    cout << "¿Como desea ordenar la lista de reproducción?" << endl;
+    cout << "Como desea ordenar la lista de reproduccion?" << endl;
     cout << "1) Nombre del artista" << endl;
     cout << "2) Nombre de la cancion" << endl;
     cout << "3) Duracion de la cancion" << endl;
     cout << "Ingrese la opcion que desea consultar: " << endl;
-    cin >> opcion1;
-    cout<<"Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?" << endl;
-    cin>> opcion2;
-
-    ordenar(opcion1 + 1, opcion2, true);
+    cin >> entradaO;
+    if (strlen(entradaO) > 1 || !isdigit(entradaO[0])) {
+        cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        menuOrdenar();
+    }
+    else {
+        opcion1 = atoi(entradaO);
+        if (opcion1 > 0 && opcion1 < 4) {
+            cout << "Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?" << endl;
+            cin >> entradaO2;
+            if (strlen(entradaO2) > 1 || !isdigit(entradaO2[0])) {
+                cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                menuOrdenar();
+            }
+            else {
+                opcion2 = atoi(entradaO2);
+                if (opcion2 >= 0 && opcion2 <= 1) {
+                    ordenar(opcion1 + 1, opcion2, 1);
+                }
+                else {
+                    cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    menuOrdenar();
+                }
+            }
+        }
+        else {
+            cout << "Entrada invalida. Por favor, ingrese una opción válida (1-4)." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            menuOrdenar();
+        }
+    }
 }
 void menuInicio() {
     int opcion = 0;
@@ -484,6 +553,7 @@ void menuInicio() {
                 break;
             default:
                 cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
+                menuInicio();
                 break;
             }
         }  
