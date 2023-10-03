@@ -14,7 +14,7 @@ using namespace std;
 list<CD>* listaDeCD = new list<CD>;
 queue<Cancion>* listaReproduccion = new queue<Cancion>;
 queue<Cancion>* listaTemporal = new queue<Cancion>;
-Cancion* CancionActual = new Cancion;
+Cancion* CancionActual = new Cancion ;
 
 //Declaracion de centinela
 bool centinela = true;
@@ -67,7 +67,10 @@ void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
 
         const Cancion& CancionElegida = *it2;
         listaReproduccion->push(CancionElegida);
-        cout << "Canción agregada." << endl;
+        cout << "Cancion agregada." << endl;
+        if (listaReproduccion->size() == 1) {
+            *CancionActual = listaReproduccion->front();
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,13 +271,22 @@ void ordenar(int orden, bool acdc, bool perm) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void reproduccionActual(){
 
-    *CancionActual = listaReproduccion->front();
-
     if(centinela){
-        cout << CancionActual->nombreCancion << " || " << CancionActual->nombreArtista << " || " << CancionActual->duracion << " || " << CancionActual->CD << endl;
+        cout << "Cancion en reproduccion: " << CancionActual->nombreCancion << " || " << CancionActual->nombreArtista << " || " << CancionActual->duracion << " || " << CancionActual->CD << endl;
     }
     else{
-     cout<<"Reproduccion en Pausa";
+     cout << "Reproduccion en Pausa" << endl;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+void playStop() {
+    if (centinela) {
+        centinela = false;
+        cout << "Reproduccion pausada" << endl;
+    }
+    else {
+        centinela = true;
+        cout << "Reproduccion resumida" << endl;
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -468,11 +480,14 @@ void menuReproductorMusica(){
                 break;
             case 4:
                 reproduccionActual();
+                menuReproductorMusica();
                 break;
             case 5:
                 //Rep siguiente
                 break;
             case 6:
+                playStop();
+                menuReproductorMusica();
                 break;
             case 7:
                 menuInicio();
