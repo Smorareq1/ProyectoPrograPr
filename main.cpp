@@ -14,6 +14,10 @@ using namespace std;
 list<CD>* listaDeCD = new list<CD>;
 queue<Cancion>* listaReproduccion = new queue<Cancion>;
 queue<Cancion>* listaTemporal = new queue<Cancion>;
+Cancion* CancionActual = new Cancion;
+
+//Declaracion de centinela
+bool centinela = true;
 
 //Declrarar funciones futuras
 void menuInicio();
@@ -262,6 +266,18 @@ void ordenar(int orden, bool acdc, bool perm) {
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+void reproduccionActual(){
+
+    *CancionActual = listaReproduccion->front();
+
+    if(centinela){
+        cout << CancionActual->nombreCancion << " || " << CancionActual->nombreArtista << " || " << CancionActual->duracion << " || " << CancionActual->CD << endl;
+    }
+    else{
+     cout<<"Reproduccion en Pausa";
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
     int opcion1 = 0;
     char entrada[100];
@@ -412,13 +428,15 @@ void ruta() {
 void menuReproductorMusica(){
     int opcion = 0;
     char entrada[100];
+
         cout << "Opciones: " << endl;
         cout << "1) Agregar Cancion" << endl;
         cout << "2) Ver cola de reproduccion" << endl;
         cout << "3) Ordenar" << endl;
         cout << "4) Reproduccion actual" << endl;
         cout << "5) Reproducir siguiente" << endl;
-        cout << "6) Volver al menu de inicio" << endl;
+        cout << "6) Play / Stop" << endl;
+        cout << "7) Volver al menu de inicio" << endl;
 
         cout << "Ingrese la opcion que desea consultar: ";
         cin >> entrada;
@@ -449,12 +467,14 @@ void menuReproductorMusica(){
                 menuReproductorMusica();
                 break;
             case 4:
-                //Rep actual
+                reproduccionActual();
                 break;
             case 5:
                 //Rep siguiente
                 break;
             case 6:
+                break;
+            case 7:
                 menuInicio();
                 break;
             default:
