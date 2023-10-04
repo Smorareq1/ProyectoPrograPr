@@ -403,7 +403,7 @@ void leerArchivo(string& rutaArchivo) {
                 }
                 else {
                     auto cantidadCancionesUnicas = canciones.size();
-                    cout << "\nCantidad de canciones unicas encontradas en " << nombre << ": " << cantidadCancionesUnicas << endl;
+                    cout << "Cantidad de canciones unicas encontradas en " << nombre << ": " << cantidadCancionesUnicas << endl;
 
                     CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
                     listaDeCD->push_back(cd);
@@ -419,18 +419,6 @@ void leerArchivo(string& rutaArchivo) {
         }
     }
 
-    //Para imprimir
-    /*for (const CD& disco : *listaDeCD) {
-        cout << "Nombre del CD: " << disco.nombreCD << endl;
-        cout << "Cantidad de canciones: " << disco.numeroCanciones << endl;
-        cout << "Canciones: " << endl;
-        for (const Cancion& cancion : disco.nombresCanciones) {
-            cout << "Nombre de la cancion: " << cancion.nombreCancion << endl;
-            cout << "Nombre del artista: " << cancion.nombreArtista << endl;
-            cout << "Duracion: " << cancion.duracion << endl;
-            cout << "Disco que la contiene: " << cancion.CD << endl;
-        }
-    }*/
     menuInicio();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
