@@ -413,7 +413,7 @@ void leerArchivo(string& rutaArchivo) {
                 }
             }
             else {
-                //Preguntar si se debe terminar el programa
+
                 cout << "No se pudo abrir el archivo: " << entrada.path().filename() << endl;
             }
         }
@@ -541,7 +541,7 @@ void menuOrdenar() {
             }
         }
         else {
-            cout << "Entrada invalida. Por favor, ingrese una opción válida (1-4)." << endl;
+            cout << "Entrada invalida. Por favor, ingrese una opcion valida (1-4)." << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             menuOrdenar();
