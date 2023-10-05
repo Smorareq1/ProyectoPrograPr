@@ -14,7 +14,7 @@ using namespace std;
 list<CD>* listaDeCD = new list<CD>;
 queue<Cancion>* listaReproduccion = new queue<Cancion>;
 queue<Cancion>* listaTemporal = new queue<Cancion>;
-Cancion* CancionActual = new Cancion ;
+Cancion* CancionActual = new Cancion;
 
 //Declaracion de centinela
 bool centinela = false;
@@ -330,7 +330,9 @@ void verLista() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void limpiarArchivos() {
     listaDeCD->clear();
-    //Agregar el clear de las colas
+    while (!listaReproduccion->empty()) listaReproduccion->pop();
+    while (!listaTemporal->empty()) listaTemporal->pop();
+    CancionActual = nullptr;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void salirDelPrograma(){
