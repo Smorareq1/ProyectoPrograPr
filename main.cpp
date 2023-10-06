@@ -599,12 +599,13 @@ int main() {
     list<CD>* listaDeCD = nullptr;
     queue<Cancion>* listaReproduccion = nullptr;
     queue<Cancion>* listaTemporal = nullptr;
+    Cancion* CancionActual = nullptr;
     menuInicio();
 
     delete listaDeCD;
     delete listaReproduccion;
     delete listaTemporal;
-
+    delete CancionActual;
 
     return 0;
 }
