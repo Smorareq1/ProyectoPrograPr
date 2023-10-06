@@ -28,23 +28,23 @@ void menuReproductorMusica();
 void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
     int i = 1;
     for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
-        cout << i << ") " << it->nombreCD << endl;
+        cout << i << ") " << it->nombreCD << '\n';
         ++i;
     }
 
     int opcionCD;
-    cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << endl;
+    cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << '\n';
     cin >> opcionCD;
     while (cin.fail() || opcionCD < 1 || opcionCD > listaDeCD->size()) {
-        cout << "Opcion invalida. Por favor, seleccione un CD valido." << endl;
+        cout << "Opcion invalida. Por favor, seleccione un CD valido." << '\n';
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         int j = 1;
         for (auto it = listaDeCD->begin(); it != listaDeCD->end(); ++it) {
-            cout << j << ") " << it->nombreCD << endl;
+            cout << j << ") " << it->nombreCD << '\n';
             ++j;
         }
-        cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << endl;
+        cout << "Ingrese el numero correspondiente al CD que desea seleccionar: " << '\n';
         cin >> opcionCD;
     }
     if (opcionCD >= 1 && opcionCD <= listaDeCD->size()) {
@@ -52,15 +52,15 @@ void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
         advance(it, opcionCD - 1);
 
         const CD& CDElegido = *it;
-        cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << endl;
+        cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << '\n';
         int opcionCancion = 0;
         CDElegido.mostrarCanciones();
         cin >> opcionCancion;
         while (cin.fail() || opcionCancion < 1 || opcionCancion > CDElegido.numeroCanciones) {
-            cout << "Opcion invalida. Por favor, seleccione un numero valido." << endl;
+            cout << "Opcion invalida. Por favor, seleccione un numero valido." << '\n';
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << endl;
+            cout << "Ingrese el numero correspondiente a la cancion que desea seleccionar: " << '\n';
             cin >> opcionCancion;
         }
         auto it2 = (CDElegido.nombresCanciones).begin();
@@ -68,7 +68,7 @@ void agregarCancion() { //EDITADO, WHILE PARA DETECTAR ERRORES
 
         const Cancion& CancionElegida = *it2;
         listaReproduccion->push(CancionElegida);
-        cout << "Cancion agregada." << endl;
+        cout << "Cancion agregada." << '\n';
 
     }
 }
@@ -95,7 +95,7 @@ void ordenarNombreCancionAscendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -120,7 +120,7 @@ void ordenarNombreCancionDescendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -145,7 +145,7 @@ void ordenarNombreArtistaAscendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -168,7 +168,7 @@ void ordenarNombreArtistaDescendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -198,7 +198,7 @@ void ordenarPorDuracionAscendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -219,16 +219,16 @@ void ordenarPorDuracionDescendente(bool perma) {
         *listaReproduccion = listaTemporal;
     }
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void ordenarOriginal() {
     queue<Cancion> listaTemporal = *listaReproduccion;
-    cout << "Canciones en la lista de reproduccion" << endl;
+    cout << "Canciones en la lista de reproduccion" << '\n';
     while (!listaTemporal.empty()) {
-        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << endl;
+        cout << (listaTemporal.front()).nombreCancion << " || " << (listaTemporal.front()).nombreArtista << " || " << (listaTemporal.front()).duracion << '\n';
         listaTemporal.pop();
     }
 }
@@ -263,7 +263,7 @@ void ordenar(int orden, bool acdc, bool perm) {
         }
         break;
     default:
-        cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
+        cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << '\n';
         break;
     }
 }
@@ -271,10 +271,10 @@ void ordenar(int orden, bool acdc, bool perm) {
 void reproduccionActual(){
 
     if(centinela){
-        cout << "Cancion en reproduccion: " << CancionActual->nombreCancion << " || " << CancionActual->nombreArtista << " || " << CancionActual->duracion << " || " << CancionActual->CD << endl;
+        cout << "Cancion en reproduccion: " << CancionActual->nombreCancion << " || " << CancionActual->nombreArtista << " || " << CancionActual->duracion << " || " << CancionActual->CD << '\n';
     }
     else{
-     cout << "Reproduccion en Pausa" << endl;
+     cout << "Reproduccion en Pausa" << '\n';
     }
 }
 void reproducirSiguiente(){
@@ -292,26 +292,26 @@ void playStop() {
     }
     if (centinela) {
         centinela = false;
-        cout << "Reproduccion pausada" << endl;
+        cout << "Reproduccion pausada" << '\n';
     }
     else {
         centinela = true;
-        cout << "Reproduccion resumida" << endl;
+        cout << "Reproduccion resumida" << '\n';
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void verLista() {
     int opcion1 = 0;
     char entrada[100];
-    cout << "Como desea visualizar la lista de reproduccion?" << endl;
-    cout << "1) Agregado originalmente" << endl;
-    cout << "2) Nombre del artista" << endl;
-    cout << "3) Nombre de la cancion" << endl;
-    cout << "4) Duracion de la cancion" << endl;
+    cout << "Como desea visualizar la lista de reproduccion?" << '\n';
+    cout << "1) Agregado originalmente" << '\n';
+    cout << "2) Nombre del artista" << '\n';
+    cout << "3) Nombre de la cancion" << '\n';
+    cout << "4) Duracion de la cancion" << '\n';
     cout << "Ingrese la opcion que desea consultar: ";
     cin >> entrada;
     if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
-        cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+        cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         verLista();
@@ -322,7 +322,7 @@ void verLista() {
             ordenar(opcion1, true, false);
         }
         else {
-            cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+            cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
             verLista();
         }
     }
@@ -342,7 +342,7 @@ void salirDelPrograma(){
 void leerArchivo(string& rutaArchivo) {
     //Verifica que exista el directorio
     if (!filesystem::is_directory(rutaArchivo) || !filesystem::exists(rutaArchivo)) {
-        cout << "Ruta no valida. Por favor, ingrese una ruta de directorio valida." << endl;
+        cout << "Ruta no valida. Por favor, ingrese una ruta de directorio valida." << '\n';
         menuInicio();
         return;
     }
@@ -368,13 +368,13 @@ void leerArchivo(string& rutaArchivo) {
                 while (getline(archivo, linea)) {
                     //Preguntar si cuando encuentre la linea vacía, tira el disco
                     if (linea.empty()) {
-                        cout << "Linea vacia encontrada, el formato de texto no es valido (CD corrupto)" << endl;
+                        cout << "Linea vacia encontrada, el formato de texto no es valido (CD corrupto)" << '\n';
                         return;
                     }
                     else {
-                        /*cout << linea << endl;*/
+                        /*cout << linea << '\n';*/
                         if (canciones.find(linea) != canciones.end()) {
-                            cout << "Cancion repetida en " << nombre << ": " << linea << endl;
+                            cout << "Cancion repetida en " << nombre << ": " << linea << " No ha sido anadida. " << '\n';
                         }
                         else {
                             Cancion cancion;
@@ -385,7 +385,7 @@ void leerArchivo(string& rutaArchivo) {
                                 auto p3 = linea.find("||", p2 + 2);
                                 if (p3 != string::npos) {
                                     //Preguntar si el formato de duración de canción también debe ser comprobado
-                                    cout << "Formato de linea incorrecto en: " << nombre << endl;
+                                    cout << "Formato de linea incorrecto en: " << nombre << '\n';
                                 }
                                 else {
                                     cancion.nombreCancion = linea.substr(0, p1);
@@ -401,12 +401,12 @@ void leerArchivo(string& rutaArchivo) {
                 }
 
                 if (canciones.empty()) {
-                    cout << "El archivo " << nombre << " no contiene canciones." << endl;
+                    cout << "El archivo " << nombre << " no contiene canciones." << '\n';
                 }
                 else {
                     auto cantidadCancionesUnicas = canciones.size();
-                    cout << "Cantidad de canciones unicas encontradas en " << nombre << ": " << cantidadCancionesUnicas << endl;
-
+                    cout << "Cantidad de canciones unicas encontradas en " << nombre << ": " << cantidadCancionesUnicas << '\n';
+                    cout << "Solamente esa cantidad de canciones ha sido anadida al CD." << '\n';
                     CD cd(nombre, cantidadCancionesUnicas, listaDeCanciones);
                     listaDeCD->push_back(cd);
 
@@ -416,7 +416,7 @@ void leerArchivo(string& rutaArchivo) {
             }
             else {
 
-                cout << "No se pudo abrir el archivo: " << entrada.path().filename() << endl;
+                cout << "No se pudo abrir el archivo: " << entrada.path().filename() << '\n';
             }
         }
     }
@@ -428,7 +428,7 @@ void ruta() {
 
     //Pedir directorio princial
     string rutaArchivo;
-    cout << "Ingrese la ruta de la carpeta con los discos" << endl;
+    cout << "Ingrese la ruta de la carpeta con los discos" << '\n';
     cin.ignore();
     getline(cin, rutaArchivo);
 
@@ -441,21 +441,21 @@ void menuReproductorMusica(){
     int opcion = 0;
     char entrada[100];
 
-        cout << "Opciones: " << endl;
-        cout << "1) Agregar Cancion" << endl;
-        cout << "2) Ver cola de reproduccion" << endl;
-        cout << "3) Ordenar" << endl;
-        cout << "4) Reproduccion actual" << endl;
-        cout << "5) Reproducir siguiente" << endl;
-        cout << "6) Play / Stop" << endl;
-        cout << "7) Volver al menu de inicio" << endl;
+        cout << "Opciones: " << '\n';
+        cout << "1) Agregar Cancion" << '\n';
+        cout << "2) Ver cola de reproduccion" << '\n';
+        cout << "3) Ordenar" << '\n';
+        cout << "4) Reproduccion actual" << '\n';
+        cout << "5) Reproducir siguiente" << '\n';
+        cout << "6) Play / Stop" << '\n';
+        cout << "7) Volver al menu de inicio" << '\n';
 
         cout << "Ingrese la opcion que desea consultar: ";
         cin >> entrada;
 
 
         if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
-            cout << "Entrada invalida. Por favor, ingrese un número." << endl;
+            cout << "Entrada invalida. Por favor, ingrese un número." << '\n';
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             menuReproductorMusica();
@@ -494,7 +494,7 @@ void menuReproductorMusica(){
                 menuInicio();
                 break;
             default:
-                cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << endl;
+                cout << "Opcion invalida. Por favor, elija una opcion valida (1-6)." << '\n';
                 menuReproductorMusica();
                 break;
         }
@@ -506,14 +506,14 @@ void menuOrdenar() {
     char entradaO[100];
     char entradaO2[100];
 
-    cout << "Como desea ordenar la lista de reproduccion?" << endl;
-    cout << "1) Nombre del artista" << endl;
-    cout << "2) Nombre de la cancion" << endl;
-    cout << "3) Duracion de la cancion" << endl;
-    cout << "Ingrese la opcion que desea consultar: " << endl;
+    cout << "Como desea ordenar la lista de reproduccion?" << '\n';
+    cout << "1) Nombre del artista" << '\n';
+    cout << "2) Nombre de la cancion" << '\n';
+    cout << "3) Duracion de la cancion" << '\n';
+    cout << "Ingrese la opcion que desea consultar: " << '\n';
     cin >> entradaO;
     if (strlen(entradaO) > 1 || !isdigit(entradaO[0])) {
-        cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+        cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         menuOrdenar();
@@ -521,10 +521,10 @@ void menuOrdenar() {
     else {
         opcion1 = atoi(entradaO);
         if (opcion1 > 0 && opcion1 < 4) {
-            cout << "Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?" << endl;
+            cout << "Como desea ordenarlo, de manera ascendente o descendente (1 para ascendente y 0 para descendente)?" << '\n';
             cin >> entradaO2;
             if (strlen(entradaO2) > 1 || !isdigit(entradaO2[0])) {
-                cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+                cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 menuOrdenar();
@@ -535,7 +535,7 @@ void menuOrdenar() {
                     ordenar(opcion1 + 1, opcion2, 1);
                 }
                 else {
-                    cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+                    cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     menuOrdenar();
@@ -543,7 +543,7 @@ void menuOrdenar() {
             }
         }
         else {
-            cout << "Entrada invalida. Por favor, ingrese una opcion valida (1-4)." << endl;
+            cout << "Entrada invalida. Por favor, ingrese una opcion valida (1-4)." << '\n';
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             menuOrdenar();
@@ -553,16 +553,16 @@ void menuOrdenar() {
 void menuInicio() {
     int opcion = 0;
     char entrada[100];
-        cout << "Opciones: " << endl;
-        cout << "1) Importar Carpeta" << endl;
-        cout << "2) Reproductor de musica" << endl;
-        cout << "3) Borrar CDs" << endl;
-        cout << "4) Salir" << endl;
+        cout << "Opciones: " << '\n';
+        cout << "1) Importar Carpeta" << '\n';
+        cout << "2) Reproductor de musica" << '\n';
+        cout << "3) Borrar CDs" << '\n';
+        cout << "4) Salir" << '\n';
 
         cout << "Ingrese la opcion que desea consultar: ";
         cin >> entrada;
         if (strlen(entrada) > 1 || !isdigit(entrada[0])) {
-            cout << "Entrada invalida. Por favor, ingrese un numero valido." << endl;
+            cout << "Entrada invalida. Por favor, ingrese un numero valido." << '\n';
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             menuInicio();
@@ -581,14 +581,14 @@ void menuInicio() {
             case 3:
                 //Pendiente?
                 limpiarArchivos();
-                cout << "CDs limpiados correctamente." << endl;
+                cout << "CDs limpiados correctamente." << '\n';
                 menuInicio();
                 break;
             case 4:
                 salirDelPrograma();
                 break;
             default:
-                cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << endl;
+                cout << "Opcion invalida. Por favor, elija una opcion valida (1-4)." << '\n';
                 menuInicio();
                 break;
             }
