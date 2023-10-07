@@ -278,6 +278,10 @@ void reproduccionActual(){
     }
 }
 void reproducirSiguiente(){
+    if (primeravez) {
+        cout << "Por favor, reproduzca una cancion antes. " << '\n';
+        return;
+    }
     listaReproduccion->push(*CancionActual);
     *CancionActual = listaReproduccion->front();
     listaReproduccion->pop();
@@ -581,7 +585,13 @@ void menuInicio() {
                 ruta();
                 break;
             case 2:
-                menuReproductorMusica();
+                if (listaDeCD->empty()) {
+                    cout << "Antes de acceder al reproductor, importe una carpeta." << '\n';
+                    menuInicio();
+                }
+                else {
+                    menuReproductorMusica();
+                }
                 break;
             case 3:
                 //Pendiente?
