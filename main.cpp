@@ -14,7 +14,7 @@ using namespace std;
 list<CD>* listaDeCD = new list<CD>;
 queue<Cancion>* listaReproduccion = new queue<Cancion>;
 queue<Cancion>* listaTemporal = new queue<Cancion>;
-Cancion* CancionActual = new Cancion;
+Cancion* CancionActual = nullptr;
 
 //Declaracion de centinela
 bool centinela = false;
@@ -285,18 +285,23 @@ void reproducirSiguiente(){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void playStop() {
-    if(primeravez) {
-        primeravez = false;
-        *CancionActual = listaReproduccion->front();
-        listaReproduccion->pop();
-    }
-    if (centinela) {
-        centinela = false;
-        cout << "Reproduccion pausada" << '\n';
+    if (listaReproduccion->empty()) {
+        cout << "La lista de reproduccion está vacia." << '\n';
     }
     else {
-        centinela = true;
-        cout << "Reproduccion resumida" << '\n';
+        if (primeravez) {
+            primeravez = false;
+            CancionActual = new Cancion(listaReproduccion->front());
+            listaReproduccion->pop();
+        }
+        if (centinela) {
+            centinela = false;
+            cout << "Reproduccion pausada" << '\n';
+        }
+        else {
+            centinela = true;
+            cout << "Reproduccion resumida" << '\n';
+        }
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -596,16 +601,6 @@ void menuInicio() {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 int main() {
-    list<CD>* listaDeCD = nullptr;
-    queue<Cancion>* listaReproduccion = nullptr;
-    queue<Cancion>* listaTemporal = nullptr;
-    Cancion* CancionActual = nullptr;
     menuInicio();
-
-    delete listaDeCD;
-    delete listaReproduccion;
-    delete listaTemporal;
-    delete CancionActual;
-
     return 0;
 }
